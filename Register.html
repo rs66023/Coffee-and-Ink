@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Registration</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+             body {
+              background-color:#8EE4AF;
+            }
+            .form-div{
+              margin: 20px;
+              padding: 15px;
+              font-size: 18px;
+              background-color:#EDF5E1;
+              margin-bottom: 15px;
+              margin-top: 40px;
+            }
+    </style>
+  </head>
+  <body>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6">
+        <div class="form-div">
+          <h4>Registration</h4><br>
+          <form method="post">
+            <div class="form-group">
+              <label for="Input_Username">Username</label>
+              <input type="text" class="form-control" id="Input_Username" pattern=".{6,}" placeholder="Username" required>
+              <div class="invalid-feedback">Please enter a username of minimum 6 characters</div>
+            </div>
+            <div class="form-group">
+              <label for="Input_Email">Email</label>
+              <input type="email" class="form-control" id="Input_Email" placeholder="Email" required>
+              <div class="invalid-feedback">Please enter a valid email to continue</div>
+            </div>
+            <label>You're interested as: </label><br>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" class="custom-control-input" id="Artist" name="User_type_Radio" required>
+              <label class="custom-control-label" for="Artist">Artist</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" class="custom-control-input" id="Audience" name="User_type_Radio" required>
+              <label class="custom-control-label" for="Audience">Audience</label>
+            </div><br><br>
+            <label>Artforms you are familiar with:</label>
+            <div class="custom-control custom-checkbox"> 
+              <input type="checkbox" class="custom-control-input" id="digital" name="Artform_list">
+              <label class="custom-control-label" for="digital">Scanned or digital artworks</label>
+            </div>
+            <div class="custom-control custom-checkbox mt-2">
+              <input type="checkbox" class="custom-control-input" id="music" name="Artform_list">
+              <label class="custom-control-label" for="music">Music</label>
+            </div>
+            <div class="custom-control custom-checkbox mt-2">
+              <input type="checkbox" class="custom-control-input" id="Literature" name="Artform_list">
+              <label class="custom-control-label" for="Literature">Literature</label>
+            </div>
+            <div class="custom-control custom-checkbox mt-2">
+              <input type="checkbox" class="custom-control-input" id="Visual" name="Artform_list">
+              <label class="custom-control-label" for="Visual">Visual Content</label>
+            </div>
+            <div class="custom-control custom-checkbox mt-2">
+            <input type="checkbox" class="custom-control-input" id="Costume" name="Artform_list">
+            <label class="custom-control-label" for="Costume">Costume prop or cosplay</label>
+            </div><br><br>
+            <div class="form-group">
+              <label for="Input_Password">Password</label>
+              <input type="password" class="form-control" id="Input_Password" placeholder="Enter Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"   required title="8 characters minimum">
+              <div class="invalid-feedback">Please enter a valid password to continue</div>
+            </div>
+            <div class="form-group">
+              <label for="Confirm_Password">Confirm Password</label>
+              <input type="password" class="form-control" id="Confirm_Password" placeholder="Confirm Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"    required title="8 characters minimum">
+              <small class="form-text text-muted">
+                Your password must be 8-20 characters long, contain letters, numbers and special characters, but must not contain spaces.
+              </small>
+            </div>
+            <button type="submit" class="btn btn-primary" onclick="Registration()">Register</button>
+          </form>
+          <hr class="style1">
+          Already have an account? <a href="url">Sign in</a>
+        </div>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <script>
+      // Self-executing function
+      (function() {
+          'use strict';
+          window.addEventListener('load', function() {
+              // Fetch all the forms we want to apply custom Bootstrap validation styles to
+              var forms = document.getElementsByClassName('needs-validation');
+              // Loop over them and prevent submission
+              var validation = Array.prototype.filter.call(forms, function(form) {
+                  form.addEventListener('submit', function(event) {
+                      if (form.checkValidity() === false) {
+                          event.preventDefault();
+                          event.stopPropagation();
+                      }
+                      form.classList.add('was-validated');
+                  }, false);
+              });
+          }, false);
+      })();
+      function Registration(){
+        var checkboxs=document.getElementsByName("Artform_list");
+        var okay=false;
+        var password=document.getElementById("Input_Password").value;
+        var cpassword=document.getElementById("Confirm_Password").value;
+
+        for(var i=0,l=checkboxs.length;i<l;i++)
+        {
+          if(checkboxs[i].checked)
+          {
+            okay=true;
+            break;
+          }
+        }
+        if (okay==true && password==cpassword)
+        {
+          alert("Registration successful!");
+        }
+        else if(password!=cpassword)
+        {
+        alert("Passwords do not match");
+        }
+        else{
+          alert("Please select an artform")
+        }
+      }
+  </script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
